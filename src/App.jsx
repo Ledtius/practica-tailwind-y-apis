@@ -1,7 +1,19 @@
+import Header from "./components/Day01/Layout/Header.jsx";
+
+import Main from "./components/Day01/Layout/Main.jsx";
+
+import Footer from "./components/Day01/Layout/Footer.jsx";
+
 function App() {
-  return <>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, error? Dolore delectus dignissimos laborum culpa cumque soluta repellendus, rem possimus inventore ullam dolores sint voluptatum quo quasi harum unde beatae.</p>
-  </>;
+  return (
+    <>
+      <div className="flex flex-col bg-amber-200 h-dvh">
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    </>
+  );
 }
 
 export default App;
