@@ -7,7 +7,7 @@ import Footer from "./components/Day01/Layout/Footer.jsx";
 function App() {
   return (
     <>
-      <div className="flex flex-col bg-amber-200 h-dvh">
+      <div className="flex flex-col items-center justify-between h-dvh">
         <Header />
         <Main />
         <Footer />

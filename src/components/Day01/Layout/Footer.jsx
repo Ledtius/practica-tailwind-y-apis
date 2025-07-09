@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
     <>
-      <footer className="bg-red-500 text-center">
+      <footer className="text-center p-5 w-full m-4">
         <a className="font-bold" href="http://github.com/ledtius">
           ©Calet Devia
-        </a>{" "}
+        </a>
         - Todos los derechos reservados
       </footer>
     </>
