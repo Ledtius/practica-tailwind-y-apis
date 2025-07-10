@@ -9,20 +9,26 @@ import Footer from "./components/Day02/Layout/Footer.jsx";
 import loaderStyles from "./styles/Loader.module.css";
 
 function App() {
-  const sayHi = (name, callback) => {
-    console.log("Waiting...");
+  const calculate = (n1, n2, callback) => {
+    console.log(`Processing the operation between ${n1} and ${n2}`);
 
     setTimeout(() => {
-      callback(name);
+      callback(n1, n2);
     }, 1500);
   };
 
-  const printName = (name) => {
-    console.log(`¡Hey ${name}!\nHow are you? `);
+  const result = (v1, v2) => {
+    const operations = {
+      sum: v1 + v2,
+      subtract: v1 - v2,
+      multi: v1 * v2,
+      div: v1 / v2,
+    };
+
+    console.log(`The result of the operation is: ${operations.subtract}`);
   };
 
-  sayHi("Calet", printName);
-  useEffect(() => {}, []);
+  calculate(1,2 ,result)
 
   return (
     <>
