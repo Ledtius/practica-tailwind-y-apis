@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Header from "./components/Day01/Layout/Header.jsx";
 
 import Main from "./components/Day01/Layout/Main.jsx";
@@ -7,17 +9,22 @@ import Footer from "./components/Day01/Layout/Footer.jsx";
 import loaderStyles from "./styles/Loader.module.css";
 
 function App() {
-  const user = { name: "Calet" };
-  const greetUser = (user) => {
-    console.log(user);
+  const sayHi = (name, callback) => {
+    console.log("Waiting...");
+
+    setTimeout(() => {
+      callback(name);
+    }, 1500);
   };
 
-  const verifyUser = (callback) => {
-    const name = prompt("Taping your name");
-    callback(name);
+  const printName = (name) => {
+    console.log(`¡Hey ${name}!\nHow are you? `);
   };
 
-  verifyUser(greetUser);
+  sayHi("Calet", printName);
+  useEffect(() => {
+  }, []);
+
   return (
     <>
       <div className="flex flex-col items-center justify-between h-dvh">
