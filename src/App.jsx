@@ -1,43 +1,30 @@
-import { useEffect } from "react";
-
 import Header from "./components/Day02/Layout/Header.jsx";
 
 import Main from "./components/Day02/Layout/Main.jsx";
 
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
-import loaderStyles from "./styles/Loader.module.css";
-
 function App() {
-  // const receivedMessage = () => {
-  //   let proptMessage = "default";
+  const arrayUsers = [
+    { name: "Calet", age: 23 },
+    { name: "Ronald", age: 20 },
+    { name: "Sara", age: 14 },
+  ];
 
-  //   while (proptMessage) {
-  //     proptMessage = prompt("Writing a message");
-  //     console.log(proptMessage);
-  //   }
-
-  // };
-
-  // receivedMessage();
-
-  const repeatMessage = (message = "Default Msg", repeat = 2, callback) => {
-    const arrayMsgRepeat = [];
-    for (let index = 1; index <= repeat; index++) {
-      arrayMsgRepeat.push(message);
-    }
-    callback(arrayMsgRepeat);
+  const receiveUsers = (users, callback) => {
+    setTimeout(() => {
+      console.log(callback(users));
+    }, 1500);
+    console.log("Processing data...");
   };
 
-  const printMessage = (arrayMsg) => {
-    arrayMsg.forEach((message, index) => {
-      console.log(`${index + 1}) ${message}`);
-    });
+  const validateUsers = (arrayUsers) => {
+    const greater18 = arrayUsers.filter((user) => user.age >= 18);
+
+    return greater18;
   };
 
-  useEffect(() => {
-    repeatMessage("Hola", 6, printMessage);
-  }, []);
+  receiveUsers(arrayUsers, validateUsers);
 
   return (
     <>
