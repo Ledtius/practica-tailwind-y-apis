@@ -5,20 +5,35 @@ import Main from "./components/Day02/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
-  const simulateRequest = (nameResource, callback) => {
-    console.log("Loading...");
+  const user = { id: 123, name: "Calet" };
+
+  const getUser = (obj, callback) => {
+    console.log("Finding the user...");
     setTimeout(() => {
-      callback(nameResource);
-    }, Math.round(Math.random() * 3000));
+      callback(obj);
+    }, 1000);
   };
 
-  const resultRequest = (value) => {
-    console.log(`Resource ${value} loaded`);
+  const getPostsByUser = ({ id }, callback) => {
+    const posts = ["post1", "post2", "post3"];
+
+    setTimeout(() => {
+      console.log(`ID of user: ${id}`);
+      callback(posts);
+      return posts;
+    }, 1500);
   };
 
-  simulateRequest("Name", resultRequest);
+  const getPosts = (postElements) => {
+    console.log(postElements);
+  };
 
-  // console.log();
+  getUser(user, (userReceive) => {
+    getPostsByUser(userReceive, (postsUser) => {
+      getPosts(postsUser);
+    });
+  });
+
   return (
     <>
       <div className="flex flex-col items-center  h-dvh">
