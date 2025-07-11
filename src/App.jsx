@@ -9,26 +9,35 @@ import Footer from "./components/Day02/Layout/Footer.jsx";
 import loaderStyles from "./styles/Loader.module.css";
 
 function App() {
-  const calculate = (n1, n2, callback) => {
-    console.log(`Processing the operation between ${n1} and ${n2}`);
+  // const receivedMessage = () => {
+  //   let proptMessage = "default";
 
-    setTimeout(() => {
-      callback(n1, n2);
-    }, 1500);
+  //   while (proptMessage) {
+  //     proptMessage = prompt("Writing a message");
+  //     console.log(proptMessage);
+  //   }
+
+  // };
+
+  // receivedMessage();
+
+  const repeatMessage = (message = "Default Msg", repeat = 2, callback) => {
+    const arrayMsgRepeat = [];
+    for (let index = 1; index <= repeat; index++) {
+      arrayMsgRepeat.push(message);
+    }
+    callback(arrayMsgRepeat);
   };
 
-  const result = (v1, v2) => {
-    const operations = {
-      sum: v1 + v2,
-      subtract: v1 - v2,
-      multi: v1 * v2,
-      div: v1 / v2,
-    };
-
-    console.log(`The result of the operation is: ${operations.subtract}`);
+  const printMessage = (arrayMsg) => {
+    arrayMsg.forEach((message, index) => {
+      console.log(`${index + 1}) ${message}`);
+    });
   };
 
-  calculate(1,2 ,result)
+  useEffect(() => {
+    repeatMessage("Hola", 6, printMessage);
+  }, []);
 
   return (
     <>
