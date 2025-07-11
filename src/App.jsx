@@ -5,27 +5,20 @@ import Main from "./components/Day02/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
-  const arrayUsers = [
-    { name: "Calet", age: 23 },
-    { name: "Ronald", age: 20 },
-    { name: "Sara", age: 14 },
-  ];
-
-  const receiveUsers = (users, callback) => {
+  const simulateRequest = (nameResource, callback) => {
+    console.log("Loading...");
     setTimeout(() => {
-      console.log(callback(users));
-    }, 1500);
-    console.log("Processing data...");
+      callback(nameResource);
+    }, Math.round(Math.random() * 3000));
   };
 
-  const validateUsers = (arrayUsers) => {
-    const greater18 = arrayUsers.filter((user) => user.age >= 18);
-
-    return greater18;
+  const resultRequest = (value) => {
+    console.log(`Resource ${value} loaded`);
   };
 
-  receiveUsers(arrayUsers, validateUsers);
+  simulateRequest("Name", resultRequest);
 
+  // console.log();
   return (
     <>
       <div className="flex flex-col items-center  h-dvh">
