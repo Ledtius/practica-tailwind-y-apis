@@ -10,8 +10,11 @@ function App() {
   const getUser = (userObj) => {
     console.log("Finding the user...");
     return new Promise((resolves, reject) => {
+      const answer = true;
+
       setTimeout(() => {
-        resolves(userObj);
+        if (answer) resolves(userObj);
+        else reject("Error finding user");
       }, 1000);
     });
   };
@@ -20,16 +23,23 @@ function App() {
     const posts = ["post1", "post2", "post3"];
 
     return new Promise((resolves, reject) => {
+      console.log(`ID of user: ${id}`);
+
+      console.log("Getting the post of the user...");
+      const answer = true;
       setTimeout(() => {
-        console.log(`ID of user: ${id}`);
-        resolves(posts);
+        if (answer) resolves(posts);
+        else reject("Error finding posts");
       }, 1500);
     });
   };
 
   const getPosts = (postElements) => {
     return new Promise((resolves, reject) => {
-      resolves(postElements);
+      const answer = false;
+
+      if (answer) resolves(postElements);
+      else reject("Error printing the posts");
     });
   };
 
@@ -40,7 +50,8 @@ function App() {
     .then((value) => {
       return getPosts(value);
     })
-    .then((value) => console.log(value));
+    .then((value) => console.log(value))
+    .catch((e) => console.error(e));
 
   // getUser(user, (userReceive) => {
   //   getPostsByUser(userReceive, (postsUser) => {
