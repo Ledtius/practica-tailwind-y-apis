@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <>
-      <header className="p-5  bg-gray-800 shadow-2xl w-full">
+      <header className="p-5 bg-gray-800 shadow-xs z-20 shadow-gray-800 fixed w-full">
         <nav className="flex w-full justify-between gap-10">
           <a
             href="#"

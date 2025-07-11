@@ -53,15 +53,9 @@ function App() {
     .then((value) => console.log(value))
     .catch((e) => console.error(e));
 
-  // getUser(user, (userReceive) => {
-  //   getPostsByUser(userReceive, (postsUser) => {
-  //     getPosts(postsUser);
-  //   });
-  // });
-
   return (
     <>
-      <div className="flex flex-col items-center  h-dvh">
+      <div className="flex flex-col items-center relative h-dvh">
         <Header />
         <Main />
         <Footer />
