@@ -5,53 +5,39 @@ import Main from "./components/Day02/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
-  const user = { id: 123, name: "Calet" };
+  const user = { id: 1, name: "Calet" };
+  const posts = [
+    { userId: 1, title: "Post 1" },
+    { userId: 1, title: "Post 2" },
+    { userId: 2, title: "Otro post" },
+  ];
 
-  const getUser = (userObj) => {
-    console.log("Finding the user...");
-    return new Promise((resolves, reject) => {
-      const answer = true;
-
-      setTimeout(() => {
-        if (answer) resolves(userObj);
-        else reject("Error finding user");
-      }, 1000);
-    });
+  const getUserData = ({ id, name }, arrayPosts, callback) => {
+    console.log(`Passing your data...${name}`);
+    setTimeout(() => callback(id, name, arrayPosts), 1500);
   };
 
-  const getPostsByUser = ({ id }) => {
-    const posts = ["post1", "post2", "post3"];
+  const getPosts = (userId, userName, arrayPosts, callback) => {
+    const userPosts = arrayPosts.filter(({ userId: id }) => id === userId);
 
-    return new Promise((resolves, reject) => {
-      console.log(`ID of user: ${id}`);
-
-      console.log("Getting the post of the user...");
-      const answer = true;
-      setTimeout(() => {
-        if (answer) resolves(posts);
-        else reject("Error finding posts");
-      }, 1500);
-    });
+    console.log(`Finding posts... wait...`);
+    setTimeout(() => callback(userName, userPosts), 2000);
   };
 
-  const getPosts = (postElements) => {
-    return new Promise((resolves, reject) => {
-      const answer = false;
-
-      if (answer) resolves(postElements);
-      else reject("Error printing the posts");
-    });
+  const printPosts = (name, post) => {
+    console.log("Printing the posts...");
+    setTimeout(() => {
+      for (const { title } of Object.values(post)) {
+        console.log(`${name} posts: ${title}`);
+      }
+    }, 1500);
   };
 
-  getUser(user)
-    .then((value) => {
-      return getPostsByUser(value);
-    })
-    .then((value) => {
-      return getPosts(value);
-    })
-    .then((value) => console.log(value))
-    .catch((e) => console.error(e));
+  getUserData(user, posts, (userId, userName, arrayPosts) => {
+    getPosts(userId, userName, arrayPosts, (userName, userPosts) => {
+      printPosts(userName, userPosts);
+    });
+  });
 
   return (
     <>
