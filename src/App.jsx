@@ -41,7 +41,7 @@ function App() {
   // });
 
   /* Promise form */
-  const getUserData2 = (userProfile, arrayPosts) => {
+  const getUserData2 = (userProfile) => {
     /* Por que no puedo destructurar aqui dentro?, porque userProfile me devulve [object, Object]  y arrayPosts [object Object],[object Object],[object Object]?
     const { userId, title } = userProfile;
 
@@ -70,7 +70,7 @@ function App() {
     // console.log(userId, name);
     console.log(arrayPosts);
     return new Promise((resolve, reject) => {
-      const hypotheticError = true;
+      const hypotheticError = false;
 
       if (hypotheticError) {
         const userPosts = arrayPosts.filter(
@@ -87,26 +87,42 @@ function App() {
     console.log(name, arrayUser);
     // console.log(profilePosts);
     for (const { title } of Object.values(arrayUser)) {
-
       console.log(title);
       setTimeout(() => console.log(`${name} posts: ${title}`), 1500);
     }
   };
 
-  getUserData2(user)
-    .then((userProfile, userPosts) => {
-      // console.log(userId, name);
-      // console.log(value, value2);
+  // getUserData2(user)
+  //   .then((userProfile, userPosts) => {
 
-      console.log(userProfile, userPosts);
-      return getPosts2(userProfile, posts);
-    })
-    .then((namePosts) => {
-      return printPosts2(namePosts);
-    })
-    .catch((e) => {
+  //     console.log(userProfile, userPosts);
+  //     return getPosts2(userProfile, posts);
+  //   })
+  //   .then((namePosts) => {
+  //     return printPosts2(namePosts);
+  //   })
+  //   .catch((e) => {
+  //     console.error(e);
+  //   });
+
+  /* Async/Await form */
+  async function postManager(user, posts) {
+    try {
+      const resultGetUserData2 = await getUserData2(user, posts);
+
+      const resultGetPosts2 = await getPosts2(resultGetUserData2, posts);
+
+      const resultPrintPosts2 = printPosts2(resultGetPosts2);
+    } catch (e) {
       console.error(e);
-    });
+    }
+    // console.log(resultGetUserData2);
+    // console.log(resultGetPosts2);
+
+    // console.log(resultPrintPosts2);
+  }
+
+  postManager(user, posts);
 
   return (
     <>
