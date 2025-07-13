@@ -45,7 +45,7 @@ const Main = () => {
       </main> */}
 
       <main className="h-fit mt-20 flex items-center justify-center flex-wrap w-full bg-white p-10 gap-7">
-        <section className="p-10 text-center h-[619.987px] bg-white w-fit rounded-2xl shadow-2xl relative pt-10  flex flex-col items-center gap-4">
+        <section className="p-10 text-center h-[619.987px] bg-white w-fit rounded-2xl shadow-2xl relative pt-10  flex flex-col items-center gap-4 select2-dropdown">
           <header className="flex flex-col items-center border-b-4 border-purple-400 mb-3 w-full">
             <svg
               className="size-30 fill-purple-400"
