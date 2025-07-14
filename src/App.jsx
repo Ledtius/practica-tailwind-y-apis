@@ -18,11 +18,14 @@ function App() {
   /* Callback form */
 
   const login = (userNameTyping, passwordTyping, callback) => {
-    users.forEach(({ id, username, password }) => {
-      if (username === userNameTyping && password === passwordTyping)
-        callback(id);
-      else return;
-    });
+    const userFound = users.find(
+      ({ username, password }) =>
+        username === userNameTyping && password === passwordTyping
+    );
+
+    if (userFound) {
+      callback(userFound.id);
+    } else return;
   };
 
   const getProfile = (userIdFind) => {
@@ -34,28 +37,49 @@ function App() {
     console.log(`Profle\nuserId: ${userId}\nBio: ${bio}\nAge: ${age}`);
   };
 
-  login("calet", "1234", getProfile);
+  // login("calet", "1234", getProfile);
 
   /* Promise form */
 
   const loginPromise = (userNameTyping, passwordTyping) => {
     return new Promise((resolve, reject) => {
-      users.forEach(({ id, username, password }) => {
-        if (username === userNameTyping && password === passwordTyping)
-          resolve(id);
-        else reject("Error - Wrong username or password");
-      });
+      const userFound = users.find(
+        ({ username, password }) =>
+          username === userNameTyping && password === passwordTyping
+      );
+
+      if (userFound) {
+        resolve(userFound.id);
+      } else reject("Error - Wrong username or password");
     });
   };
 
   const getProfilePromise = (userIdFind) => {
-    return new Promise((resolve, reject) => {
+    const userFound = profiles.filter(({ userId }) => userId === userIdFind)[0];
 
-      
-    });
+    const { userId, bio, age } = userFound;
+
+    console.log(`Profle\nuserId: ${userId}\nBio: ${bio}\nAge: ${age}`);
   };
 
-  loginPromise("calet", "1234").then((id) => {});
+  // loginPromise("calet", "1234")
+  //   .then((id) => getProfilePromise(id))
+  //   .catch((e) => console.error(e));
+
+  /* Async / Await form */
+
+  async function getProfileAsyncAwait() {
+    try {
+      const login = await loginPromise("fer", "abcd");
+      // const login = await loginPromise("calet", "1234");
+
+      const profile = await getProfilePromise(login);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  getProfileAsyncAwait();
 
   return (
     <>
