@@ -19,6 +19,18 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid gray; /* creates padding around scroll thumb */
 }
 
-.btns-custom {
-  @apply rounded-2xl text-2xl font-bold p-5 h-fit transition-transform transition-shadow hover:scale-105 hover:shadow-2xs;
+.custom-alert {
+  @apply flex items-center justify-between gap-4 h-fit w-[414.763px] p-5 rounded-2xl ring-1;
+}
+
+.custom-svg {
+  @apply size-7;
+}
+
+.custom-svg2 {
+  @apply size-5 transition-colors hover:fill-white;
+}
+
+.custom-alert-text {
+  @apply flex items-center justify-center w-[294.763px];
 }
