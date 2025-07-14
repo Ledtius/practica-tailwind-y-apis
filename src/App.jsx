@@ -5,81 +5,87 @@ import Main from "./components/Day03/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
-  const users = [
-    { id: 1, username: "calet", password: "1234" },
-    { id: 2, username: "fer", password: "abcd" },
-  ];
-
-  const profiles = [
-    { userId: 1, bio: "Soy Calet, aprendiz de React y JS", age: 23 },
-    { userId: 2, bio: "Soy Fer, gamer y programadora", age: 25 },
+  const products = [
+    { id: 1, name: "mouse", price: 12000, category: "accessories" },
+    { id: 2, name: "keyboard", price: 25000, category: "accessories" },
+    { id: 3, name: "monitor", price: 75000, category: "screens" },
+    { id: 4, name: "laptop", price: 220000, category: "computers" },
   ];
 
   /* Callback form */
 
-  const login = (userNameTyping, passwordTyping, callback) => {
-    const userFound = users.find(
-      ({ username, password }) =>
-        username === userNameTyping && password === passwordTyping
-    );
+  const getProduct = (productName, callback) => {
+    const productFound = products.find(({ name }) => name === productName);
 
-    if (userFound) {
-      callback(userFound.id);
-    } else return;
+    console.log("Processing name...");
+
+    setTimeout(() => {
+      if (productName) callback(productFound);
+      else callback(undefined);
+    }, 1000);
   };
 
-  const getProfile = (userIdFind) => {
-    const profile = profiles.filter(({ userId }) => userId === userIdFind)[0];
+  const printProduct = (product) => {
+    if (product)
+      setTimeout(() => {
+        const { name, category, price } = product;
 
-    console.log(profile);
-    const { userId, bio, age } = profile;
-
-    console.log(`Profle\nuserId: ${userId}\nBio: ${bio}\nAge: ${age}`);
+        console.log(
+          `Product found:\nProduct name: ${name}\nCategory: ${category}\nPrice: $${price} `
+        );
+      }, 1000);
+    else console.log("Error found the product");
   };
 
-  // login("calet", "1234", getProfile);
+  // getProduct("mouse", printProduct);
 
   /* Promise form */
 
-  const loginPromise = (userNameTyping, passwordTyping) => {
+  function getProductPromise(productName) {
     return new Promise((resolve, reject) => {
-      const userFound = users.find(
-        ({ username, password }) =>
-          username === userNameTyping && password === passwordTyping
-      );
+      setTimeout(() => {
+        const productFound = products.find(({ name }) => name === productName);
 
-      if (userFound) {
-        resolve(userFound.id);
-      } else reject("Error - Wrong username or password");
+        if (productFound) resolve(productFound);
+        else reject("Error, product not found");
+      }, 1000);
     });
-  };
+  }
 
-  const getProfilePromise = (userIdFind) => {
-    const userFound = profiles.filter(({ userId }) => userId === userIdFind)[0];
+  function printProductPromise(product) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (product) {
+          const { name, category, price } = product;
 
-    const { userId, bio, age } = userFound;
+          resolve(
+            `Product found:\nProduct name: ${name}\nCategory: ${category}\nPrice: $${price}`
+          );
+        } else reject("Error printed the product");
+      }, 1000);
+    });
+  }
 
-    console.log(`Profle\nuserId: ${userId}\nBio: ${bio}\nAge: ${age}`);
-  };
-
-  // loginPromise("calet", "1234")
-  //   .then((id) => getProfilePromise(id))
-  //   .catch((e) => console.error(e));
+  getProductPromise("monitor")
+    .then((productFound) => {
+      printProductPromise(productFound);
+    })
+    .catch((e) => console.error(e));
 
   /* Async / Await form */
 
-  async function getProfileAsyncAwait() {
+  async function printProductAsyncAway(productName) {
     try {
-      const login = await loginPromise("fer", "abcd");
-      // const login = await loginPromise("calet", "1234");
+      const findProduct = await getProductPromise(productName);
 
-      const profile = await getProfilePromise(login);
+      const printProduct = await printProductPromise(findProduct);
+      console.log(printProduct);
     } catch (e) {
       console.error(e);
     }
   }
 
-  getProfileAsyncAwait();
+  printProductAsyncAway("laptop");
 
   return (
     <>
