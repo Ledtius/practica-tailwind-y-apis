@@ -5,30 +5,44 @@ import Main from "./components/Day04/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
+  /* Consumed promise only */
+
+  fetch("https://api.ipify.org?format=json")
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Error in the server: ${response.status}`);
+      else return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((e) => console.error(e));
+
   /* Async/Await form */
-  const two = (resp) => {
-    return resp.json();
-  };
 
-  async function proveSomething() {
+  async function consumeAPI() {
     try {
-      const one = await fetch("https://api.ipify.org?format=json");
+      const response = await fetch("https://api.ipify.org?format=json");
 
-      const ttwo = await two(one);
+      if (!response.ok)
+        return new Error(`Error in the server ${response.status}`);
 
-      console.log(ttwo);
+      const data = await response.json();
+
+      console.log(data);
+      return data;
     } catch (e) {
       console.error(e);
     }
   }
 
-  proveSomething();
+  async function appInit() {
+    const value = await consumeAPI();
+    console.log(value);
+  }
 
-  /* Consumed promise only */
-  fetch("https://api.ipify.org?format=json")
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((e) => console.error(e));
+  appInit();
 
   return (
     <>
