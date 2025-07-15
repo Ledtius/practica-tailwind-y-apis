@@ -1,10 +1,11 @@
 import Header from "./components/Day02/Layout/Header.jsx";
 
-import Main from "./components/Day03/Layout/Main.jsx";
+import Main from "./components/Day04/Layout/Main.jsx";
 
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
+  /* Async/Await form */
   const two = (resp) => {
     return resp.json();
   };
@@ -23,6 +24,7 @@ function App() {
 
   proveSomething();
 
+  /* Consumed promise only */
   fetch("https://api.ipify.org?format=json")
     .then((response) => response.json())
     .then((data) => console.log(data))

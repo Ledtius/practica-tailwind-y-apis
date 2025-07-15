@@ -19,6 +19,27 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid gray; /* creates padding around scroll thumb */
 }
 
+
+.label-input {
+  @apply flex flex-col gap-2;
+}
+
+.label {
+  @apply font-bold text-lg;
+}
+
+.label-necessary {
+  @apply font-bold text-red-500;
+}
+
+.error {
+  @apply font-bold text-red-500;
+}
+
+.input {
+  @apply ring-1 ring-gray-500 rounded-md p-1.5 bg-white;
+}
+
 .custom-alert {
   @apply flex items-center justify-between gap-4 h-fit w-[414.763px] p-5 rounded-2xl ring-1;
 }
