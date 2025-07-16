@@ -19,7 +19,6 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid gray; /* creates padding around scroll thumb */
 }
 
-
 .label-input {
   @apply flex flex-col gap-2;
 }
@@ -37,7 +36,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .input {
-  @apply ring-1 ring-gray-500 rounded-md p-1.5 bg-white;
+  @apply rounded-2xl p-2 pl-4 bg-gray-100  border border-white focus:border-orange-200 focus:outline focus:outline-orange-200 invalid:border-pink-500 
+  invalid:outline-pink-500
+  invalid:text-pink-600 focus:invalid:outline-pink-500
+  focus:invalid:border-pink-400;
 }
 
 .custom-alert {

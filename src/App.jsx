@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center relative h-dvh">
+      <div className="flex flex-col items-center justify-between relative h-screen">
         <Header />
         <Main />
         <Footer />
