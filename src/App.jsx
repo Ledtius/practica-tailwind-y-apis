@@ -5,44 +5,95 @@ import Main from "./components/Day04/Layout/Main.jsx";
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
 function App() {
-  /* Consumed promise only */
+  function greetUser(callback) {
+    callback("Calet");
+  }
 
-  fetch("https://api.ipify.org?format=json")
-    .then((response) => {
-      if (!response.ok)
-        throw new Error(`Error in the server: ${response.status}`);
-      else return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      return data;
-    })
-    .catch((e) => console.error(e));
+  const functionGreet = (name) => {
+    console.log(`Hello ${name}`);
+  };
 
-  /* Async/Await form */
+  // greetUser(functionGreet);
 
-  async function consumeAPI() {
-    try {
-      const response = await fetch("https://api.ipify.org?format=json");
+  function operation(a, b, callback) {
+    callback(a, b);
+  }
 
-      if (!response.ok)
-        return new Error(`Error in the server ${response.status}`);
+  function resolveOpe(num1, num2) {
+    console.log(num1 + num2);
+  }
 
-      const data = await response.json();
+  // operation(1, 2, resolveOpe);
+  const numbers = [1, 232, 3, 45, 29, 18, 8, 5, 11, 4, 6, 23, 55, 19];
 
-      console.log(data);
-      return data;
-    } catch (e) {
-      console.error(e);
+  function filterAndPrint(arr, callback) {
+    const filterArray = arr.filter((number) => number > 10);
+
+    for (const num of filterArray) {
+      callback(num);
     }
   }
 
-  async function appInit() {
-    const value = await consumeAPI();
-    console.log(value);
+  function printFilterNumbers(numberFilter) {
+    console.log(numberFilter);
   }
 
-  appInit();
+  // filterAndPrint(numbers, printFilterNumbers);
+
+  const delayedMessage = (msg, delay, callback) => {
+    setTimeout(() => callback(msg), delay);
+  };
+
+  // delayedMessage("I feel alone sometimes", 1000, (message) =>
+  //   console.log(message)
+  // );
+
+  const users = [
+    { id: "1", name: "Calet", posts: ["post1", "post2", "post3"] },
+    { id: "2", name: "Ronald", posts: ["post1", "post2", "post3"] },
+  ];
+
+  function getUser(idUser, callback) {
+    console.log("Processing id of the user...");
+
+    const userFound = users.find(({ id }) => idUser === id);
+
+    setTimeout(() => {
+      callback(userFound);
+    }, 1000);
+  }
+
+  function getPostByUser(user, callback) {
+    console.log("Processing user posts...");
+    setTimeout(() => callback(user.posts));
+  }
+
+  function showPosts(posts) {
+    for (const post of posts) {
+      console.log(post);
+    }
+  }
+
+  // getUser("1", (userFound) => {
+  //   getPostByUser(userFound, (posts) => {
+  //     showPosts(posts);
+  //   });
+  // });
+
+  const array2 = [444, 2, 4, 4, 3, 2323, true, false];
+
+  const myMap = (arr, callback) => {
+    arr.forEach((element) => {
+      console.log(callback(element, "+ 1"));
+    });
+  };
+
+  myMap(array2, (item, value) => {
+    return eval(item + value);
+  });
+
+  // const result = myMap([1, 2, 3], (n) => n + 1);
+  // console.log(result); // [2, 3, 4]
 
   return (
     <>
