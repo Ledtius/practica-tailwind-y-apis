@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function Header() {
   const [showNav, setShowNav] = useState(false);
 
+  let screenValue = window.innerWidth;
+
+  useEffect(() => {
+    if (screenValue > 1040) setShowNav(true);
+
+    console.log(screenValue);
+  }, [screenValue]);
+
   return (
     <>
-      <header className="flex flex-row-reverse bg-slate-900 justify-between w-full p-4 bg- shadow-2xl/5 relative">
-        <a href="#" className="flex items-center size-fit">
+      <header className="flex flex-row-reverse bg-slate-900 justify-between w-full p-4 bg- shadow-2xl/5 relative lg:flex-row lg:items-center lg:justify-between">
+        <a
+          href="#"
+          className="flex items-center size-fit"
+          onClick={() => {
+            setShowNav(false);
+          }}
+        >
           <svg
             className="stroke-green-400 stroke-2 size-12"
             xmlns="http://www.w3.org/2000/svg"
@@ -20,19 +34,19 @@ function Header() {
             <path d="M16 11l-2 2" />
           </svg>
 
-          <h2 className="font-bold text-2xl text-green-100 hidden ">Ius</h2>
+          <h2 className="font-bold text-2xl text-green-100 hidden lg:block ">
+            Ius
+          </h2>
         </a>
 
         <nav
-          className={
-            showNav
-              ? `fixed left-0 button-0 top-0 bg-slate-900 text-gray-200 w-5/6 h-screen text-2xl font-semibold pl-4 pt-4 flex flex-col gap-5`
-              : ` hidden`
-          }
+          className={`fixed left-0 button-0 top-0 bg-slate-900 text-gray-200 w-5/6 h-screen text-2xl font-semibold pl-4 pt-4 flex flex-col gap-5 z-10 shadow-2xl/65 lg:h-fit lg:bg-transparent lg:z-0 lg:static lg:p-0 lg:w-fit`}
+          
         >
           <button
-            className="fill-gray-300"
+            className="fill-gray-300 cursor-pointer lg:hidden"
             onClick={() => {
+              console.log("Close");
               setShowNav(false);
             }}
           >
@@ -45,12 +59,12 @@ function Header() {
             </svg>
           </button>
 
-          <ul className="flex flex-col gap-6">
-            <li>
+          <ul className="flex flex-col gap-6 lg:flex-row lg:items-center lg:w-fit">
+            <li className="">
               <a
+                className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  console.log("sss");
                   setShowNav(false);
                 }}
               >
@@ -59,9 +73,9 @@ function Header() {
             </li>
             <li>
               <a
+                className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  console.log("sss");
                   setShowNav(false);
                 }}
               >
@@ -70,21 +84,36 @@ function Header() {
             </li>
             <li>
               <a
+                className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  console.log("sss");
                   setShowNav(false);
                 }}
               >
                 About us
               </a>
             </li>
+            <li>
+              <button
+                className="bg-green-500 transition-color p-4 rounded-2xl shadow-2xs shadow-white hover:text-green-500 hover:bg-white lg:p-2"
+                href="#"
+                onClick={() => {
+                  console.log("Close");
+                  screenValue = window.innerWidth;
+                  console.log(screenValue);
+                  setShowNav(false);
+                }}
+              >
+                Contact Us
+              </button>
+            </li>
           </ul>
         </nav>
+
         <button
-          className="cursor-pointer"
+          className="cursor-pointer lg:hidden"
           onClick={() => {
-            console.log("sss");
+            console.log("Hamburger");
             setShowNav(true);
           }}
         >
