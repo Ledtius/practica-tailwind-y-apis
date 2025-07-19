@@ -6,8 +6,6 @@ function Header() {
 
   useEffect(() => {
     if (screenValue > 1040) setShowNav(true);
-
-    console.log(screenValue);
   }, [screenValue]);
 
   return (
@@ -40,8 +38,11 @@ function Header() {
         </a>
 
         <nav
-          className={`fixed left-0 button-0 top-0 bg-slate-900 text-gray-200 w-5/6 h-screen text-2xl font-semibold pl-4 pt-4 flex flex-col gap-5 z-10 shadow-2xl/65 lg:h-fit lg:bg-transparent lg:z-0 lg:static lg:p-0 lg:w-fit`}
-          
+          className={
+            showNav
+              ? `fixed left-0 button-0 top-0 bg-slate-900 text-gray-200 w-5/6 h-screen text-2xl font-semibold pl-4 pt-4 flex flex-col gap-5 z-10 shadow-2xl/65 lg:h-fit lg:bg-transparent lg:z-0 lg:static lg:p-0 lg:w-fit`
+              : `hidden`
+          }
         >
           <button
             className="fill-gray-300 cursor-pointer lg:hidden"
@@ -65,7 +66,7 @@ function Header() {
                 className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  setShowNav(false);
+                  if (window.innerWidth < 1024) setShowNav(false);
                 }}
               >
                 Home
@@ -76,7 +77,7 @@ function Header() {
                 className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  setShowNav(false);
+                  if (window.innerWidth < 1024) setShowNav(false);
                 }}
               >
                 Products
@@ -87,7 +88,7 @@ function Header() {
                 className="transition-color hover:text-green-500"
                 href="#"
                 onClick={() => {
-                  setShowNav(false);
+                  if (window.innerWidth < 1024) setShowNav(false);
                 }}
               >
                 About us
@@ -98,10 +99,7 @@ function Header() {
                 className="bg-green-500 transition-color p-4 rounded-2xl shadow-2xs shadow-white hover:text-green-500 hover:bg-white lg:p-2"
                 href="#"
                 onClick={() => {
-                  console.log("Close");
-                  screenValue = window.innerWidth;
-                  console.log(screenValue);
-                  setShowNav(false);
+                  if (window.innerWidth < 1024) setShowNav(false);
                 }}
               >
                 Contact Us
