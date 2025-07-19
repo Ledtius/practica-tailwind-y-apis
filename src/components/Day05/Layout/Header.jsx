@@ -11,10 +11,10 @@ function Header() {
       } else setShowNav(false);
     }
 
-    handleResize();
+    // handleResize();
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    // window.addEventListener("resize", handleResize);
+    // return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

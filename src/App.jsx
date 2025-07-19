@@ -1,6 +1,6 @@
 import Header from "./components/Day05/Layout/Header.jsx";
 
-import Main from "./components/Day04/Layout/Main.jsx";
+import Main from "./components/Day06/Layout/Main.jsx";
 
 import Footer from "./components/Day02/Layout/Footer.jsx";
 
