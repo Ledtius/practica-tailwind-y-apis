@@ -2,11 +2,20 @@ import { useEffect, useState } from "react";
 function Header() {
   const [showNav, setShowNav] = useState(false);
 
-  let screenValue = window.innerWidth;
-
   useEffect(() => {
-    if (screenValue > 1040) setShowNav(true);
-  }, [screenValue]);
+    let screenValue = window.innerWidth;
+    function handleResize() {
+      if (screenValue >= 1040) {
+        console.log(showNav);
+        setShowNav(true);
+      } else setShowNav(false);
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
