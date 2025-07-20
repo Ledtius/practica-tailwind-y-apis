@@ -35,12 +35,15 @@ body::-webkit-scrollbar-thumb {
   @apply font-bold text-red-500;
 }
 
-
 .input {
   @apply rounded-2xl p-2 pl-4 bg-gray-100  border border-white focus:border-orange-200 focus:outline focus:outline-orange-200 invalid:border-pink-500 
   invalid:outline-pink-500
   invalid:text-pink-600 focus:invalid:outline-pink-500
   focus:invalid:border-pink-400;
+}
+
+.modal-btn {
+  @apply rounded-2xl font-bold  hover:shadow-2xs p-2 min-w-20 max-w-50 cursor-pointer;
 }
 
 .custom-alert {

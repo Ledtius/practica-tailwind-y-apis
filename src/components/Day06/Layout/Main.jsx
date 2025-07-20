@@ -1,28 +1,47 @@
+import { useState } from "react";
+
 const Main = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  function closeModal() {
+    setShowModal(false);
+  }
+  function openModal() {
+    setShowModal(true);
+  }
+
   return (
     <>
-      <main className="bg-red-200 w-full h-full flex items-center justify-center">
-        <section className="h-fit w-4/5 max-w-96 rounded-tr-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-2xl bg-gray-100 flex flex-col gap-4 min-w-80 transition-all duration-700 ease-in-out hover:scale-105 hover:shadow-2xs">
-          <img
-            className="h-54 w-full object-cover rounded-tr-2xl rounded-tl-2xl"
-            src="https://images.unsplash.com/photo-1534943441045-1009d7cb0bb9?q=80&w=808&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-          />
-
-          <div className="p-5 text-center flex flex-col gap-5">
-            <div>
-              <span className="font-semibold text-orange-400">
-                Hace una semana
-              </span>
-              <h2 className="font-bold text-2xl ">Cartagena</h2>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Provident, asperiores eligendi.
-            </p>
-          </div>
-          <div className="bg-orange-300 h-20  rounded-br-2xl rounded-bl-2xl"></div>
+      <main className="bg-red-200 w-full h-full flex flex-col items-center justify-center relative">
+        <section
+          className={`bg-white p-5 rounded-2xl flex flex-col items-center gap-6 absolute z-20 transition-all duration-500 ease-in-out ${
+            showModal
+              ? "opacity-100 translate-y-2 pointer-events-auto"
+              : "opacity-0 -translate-y-0 pointer-events-none duration-300"
+          }`}
+        >
+          <h2 className="font-bold">Do you want to accept Charges?</h2>
+          <nav className="flex items-center justify-between w-full">
+            <button
+              className="modal-btn bg-gray-300 transition-all hover:text-gray-300 hover:bg-black"
+              onClick={closeModal}
+            >
+              Yes
+            </button>
+            <button
+              className="modal-btn bg-red-500 text-white transition-all hover:text-red-500 hover:bg-gray-200"
+              onClick={closeModal}
+            >
+              No
+            </button>
+          </nav>
         </section>
+        <button
+          className="modal-btn bg-sky-400 transition-transform hover:scale-105"
+          onClick={openModal}
+        >
+          Modal Btn ⭐
+        </button>
       </main>
     </>
   );
